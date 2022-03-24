@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.views.generic.base import View
+from django.shortcuts import render
 
 # Create your views here.
 def index(request, **kwargs):
-    return HttpResponse(str(kwargs['a']) + ' + ' + str(kwargs['b']) + ' = ' + str(kwargs['a'] + kwargs['b']))
+    kwargs['sum'] = kwargs['a'] + kwargs['b']
+    return render(request, 'calc/calc.html', kwargs)
 
 
 class CalcPage(View):
